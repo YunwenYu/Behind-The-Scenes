@@ -93,7 +93,6 @@
             width:100%;
             height:600px;
             object-fit:cover;
-            filter:grayscale(100%);
         }
 
         .info-block{
@@ -101,14 +100,14 @@
         }
 
         .info-title{
-            font-size:12px;
+            font-size:40px;
             letter-spacing:2px;
-            opacity:0.5;
+            opacity:0.9;
             margin-bottom:10px;
         }
 
         .info-text{
-            font-size:18px;
+            font-size:30px;
             line-height:1.6;
             opacity:0.9;
         }
@@ -159,7 +158,7 @@
         </div>
 
         <div class="station-image placeholder-box">
-            IMAGE
+            <img src="1.jpg" alt="">
         </div>
 
     </div>
@@ -173,7 +172,7 @@
         </div>
 
         <div class="station-image placeholder-box">
-            IMAGE
+            <img src="3.jpg" alt="">
         </div>
 
     </div>
@@ -187,7 +186,7 @@
         </div>
 
         <div class="station-image placeholder-box">
-             IMAGE
+            <img src="7.jpg" alt="">
         </div>
 
     </div>
@@ -201,7 +200,7 @@
         </div>
 
         <div class="station-image placeholder-box">
-            IMAGE
+            <img src="5.jpg" alt="">
         </div>
 
     </div>
@@ -229,55 +228,19 @@
 
             <div class="left-column">
 
-                <div class="detail-image-box">
-                    STATION IMAGE
-                </div>
+                <img
+                id="stationImage"
+                src=""
+                alt="station image">
             </div>
 
             <div class="right-column">
 
-                <div class="info-block">
-                    <div class="info-title">
-                        OBJECT
-                    </div>
+                <div class="info-title" id="objectText"></div>
+                <div class="info-text" id="observationText"></div>
+                <div class="info-text" id="questionText"></div>
+                <div class="association-chain" id="chainText"></div>
 
-                    <div class="info-text">
-                        Lighting system
-                    </div>
-                </div>
-
-
-                <div class="info-block">
-                    <div class="info-title">
-                        OBSERVATION
-                    </div>
-
-                    <div class="info-text">
-                        Artificial light replaces natural light underground.
-                        The lighting system shapes movement, visibility,
-                        atmosphere, and behavioural control.
-                    </div>
-                </div>
-
-
-                <div class="info-block">
-                    <div class="info-title">
-                        REGULATION
-                    </div>
-
-                    <div class="info-text">
-                        “Where a path passes through an underpass,
-                        light the approach and exit path to the same
-                        level as the underpass.”
-                    </div>
-                </div>
-
-
-                <div class="association-chain">
-                    Lighting › Brightness › Visual Focus ›
-                    Gaze Guidance › Liability ›
-                    Risk Controllability
-                </div>
 
             </div>
 
@@ -289,6 +252,7 @@
 
     <script>
 
+
         const homepage = document.getElementById("homepage");
         const stationPage = document.getElementById("stationPage");
 
@@ -296,15 +260,80 @@
 
 
 
+        const stationData = {
+
+            anzac:{
+                image:"images/anzac.jpg",
+                image:"11.jpg",
+                title:"ANZAC",
+                object:"Lighting & Visibility",
+                observation:"Artificial light replaces natural light underground. Brightness determines what can be seen and what remains hidden.",
+                question:"Who decides how much visibility is enough?",
+                chain:"Lighting › Brightness › Visibility › Safety › Compliance"
+            },
+
+            townhall:{
+                image:"images/townhall.jpg",
+                image:"8.jpg",
+                title:"TOWN HALL",
+                object:"Lighting & Movement",
+                observation:"Light directs attention and influences movement. Passengers naturally follow illuminated routes and exits.",
+                question:"Can lighting act as a silent instruction?",
+                chain:"Lighting › Attention › Wayfinding › Crowd Flow › Behaviour"
+            },
+
+            library:{
+                image:"images/library.jpg",
+                image:"6.jpg",
+                title:"STATE LIBRARY",
+                object:"Lighting & Monitoring",
+                observation:"Visibility supports surveillance systems. CCTV effectiveness depends on consistent lighting conditions.",
+                question:"What needs to be visible?",
+                chain:"Lighting › Visibility › Monitoring › Surveillance › Governance"
+            },
+
+            parkville:{
+                image:"images/parkville.jpg",
+                image:"9.jpg",
+                title:"PARKVILLE",
+                object:"Lighting & Emotion",
+                observation:"Colour temperature affects comfort and perception. A feeling of safety can be designed through light.",
+                question:"Is safety a physical condition or a psychological one?",
+                chain:"Lighting › Colour Temperature › Comfort › Perception › Safety"
+            }
+
+        };
+
+
+        const stationImage =
+        document.getElementById("stationImage");
+
+
         function openStation(name){
 
             homepage.style.display = "none";
             stationPage.style.display = "block";
 
-            stationName.innerHTML = name.toUpperCase();
+            const station = stationData[name];
+
+            stationName.innerHTML = station.title;
+
+            stationImage.src =
+            stationData[name].image;
+
+            document.getElementById("objectText").innerHTML =
+            station.object;
+
+            document.getElementById("observationText").innerHTML =
+            station.observation;
+
+            document.getElementById("questionText").innerHTML =
+            station.question;
+
+            document.getElementById("chainText").innerHTML =
+            station.chain;
 
         }
-
 
 
         function goBack(){
